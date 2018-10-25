@@ -10,6 +10,8 @@ Below were my thoughts and steps for solving this problem.
 - config.vm.network "forwarded_port", guest: 8080, host: 8080
 4. Once I made the changes, I was running into issues docker issues about multiple programs trying to use port 80.
 - This part took me a while because I didn't have much docker-compose.yml experience. After reading the docker file, searching the web and asking peers for help, I realized that multiple applications were trying to use port 80 and have to change the ports nginx was maping the host:container. Rabbit was currently using port 80, so I decided to flip the ports and change the -ports code to "8080:80"
+- Error Message: `ERROR: for ingestion  Cannot start service ingestion: driver failed programming external connectivity on endpoint insight_ingestion_1 (8d95245958d2733db4a3d55a559b8b84d36571fcdf80e06de007d5893ef2854c): Bind for 0.0.0.0:80 failed: port is already allocated`
+- FIX: `sudo docker-compose up -d --build`
 5. After fixing the compose file, I then tried to run the application again. Now I could check the host machine on localhost:8080 and at least see some output.
 6. There was html output, but there were no numbers associated with the success rate.
 - I decided to check the logs for each container
