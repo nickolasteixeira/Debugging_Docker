@@ -17,7 +17,7 @@ Below were my thoughts and steps for solving this problem.
 - I decided to check the logs for each container
 - I found this command to be really useful: sudo docker logs --timestamps [CONATINER_NAME]
 - I started to look into the logs files of each container and realized that postgres was having an issue finding the db name, users and password. I then had to export those environment variables to my machine
-- Once exported, I then realized that the postgres commands were trying to run, but no 'weblogs' databas was set up. I then create a 'weblogs' database and fixed the issue.
+- Once exported, I then realized that the postgres commands were trying to run, but no 'weblogs' databas was set up. I then entered into the web_db container and created a 'weblogs' database and fixed the issue.
 7. Once the database was set up, I rechecked each log file of each container
 - The NGINX container was working correctly with 200 status codes
 - The Flask container was working correctly
@@ -35,7 +35,7 @@ Below were my thoughts and steps for solving this problem.
 - Once I realized that, I went to the Dockerfile. I then found the issue. The utils.py module wasn't being copied to the container. I then added the line of code that made sure all the files ending in .py get added to the container. I then added a .dockerignore file to not add .pyc files
 9. I then rebuilt the container: `sudo docker-compose up -d --build` and checked the application again.
 - SUCCESS! I was now recieving the correct output.
-10. I then rejected all the other container log files and realized one other small error regarding pyscopg2-binaries, so I entered into the container for Postgres and pip installed the dependecy.
+10. I then rejecked all the other container log files and realized one other small error regarding pyscopg2-binaries, so I entered into the container for Postgres and pip installed the dependecy.
 
 BONUS:
 TBD
