@@ -8,4 +8,5 @@ RUN pip install -r requirements_app.txt
 COPY . /opt/services/flaskapp/src
 EXPOSE 5000
 
+CMD ["bash", "wait_db.sh"]
 CMD ["python", "app.py"]
