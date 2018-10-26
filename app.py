@@ -13,13 +13,6 @@ def index():
     conn = psycopg2.connect(host='db', database=os.environ['POSTGRES_DB'], user=os.environ['POSTGRES_USER'], password=os.environ['POSTGRES_PASSWORD'])
     cur = conn.cursor()
 
-    # create the weblogs database
-    sql_create = """CREATE TABLE IF NOT EXISTS weblogs (
-               day    date,
-               status varchar(3)
-               );"""    
-    cur.execute(sql_create)
-    conn.commit()
     # Get number of all GET requests
     sql_all = """SELECT COUNT(*) FROM weblogs;"""
     cur.execute(sql_all)
