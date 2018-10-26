@@ -1,5 +1,12 @@
 # DevOps_Puzzle_Insight
 
+## Commands to run container
+1. If you do not have docker installed
+- `./install_docker.sh`
+
+2. Run the docker container and wait for the messages to stop running before pinging `localhost:8080`
+- `sudo docker-compose up`
+
 Below were my thoughts and steps for solving this problem.
 
 ## DEBUGGING PROCESS
