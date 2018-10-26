@@ -37,5 +37,10 @@ Below were my thoughts and steps for solving this problem.
 - SUCCESS! I was now recieving the correct output.
 10. I then rejecked all the other container log files and realized one other small error regarding pyscopg2-binaries, so I entered into the container for Postgres and pip installed the dependecy.
 
+
+TESTS:
+11. Once I manually completed the task, I then had to test it by cloneing the repository and into another directory and running `sudo docker-compose up -d`. To my suprise, there were errors. The goal of this challenge was to find the problem and automate the solution.
+- Instead of manually entering the postgres container and adding the table, I had to do it in the `app.py` file.
+
 BONUS:
 TBD
