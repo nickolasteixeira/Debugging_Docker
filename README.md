@@ -2,6 +2,7 @@
 
 Below were my thoughts and steps for solving this problem.
 
+## DEBUGGING PROCESS
 1. I decided to work in a Vagrant box, so I create an ubuntun/xenial64 box and wrote a file name `install_docker.sh` that would install docker ce and docker-compose
 2. Once the installation was complete, I tried to run the `docker-compose up -d` and ran into a few issues.
 - I kept getting permission denied issues and docker deamon socket issues and quickly realized I need to use the `sudo` command
@@ -38,7 +39,8 @@ Below were my thoughts and steps for solving this problem.
 10. I then rejecked all the other container log files and realized one other small error regarding pyscopg2-binaries, so I entered into the container for Postgres and pip installed the dependecy.
 
 
-TESTS:
+## TESTS:
+
 11. Once I manually completed the task, I then had to test it by cloneing the repository and into another directory and running `sudo docker-compose up -d`. To my suprise, there were errors. The goal of this challenge was to find the problem and automate the solution.
 - Instead of manually entering the postgres container and adding the table, I had to do it in the `app.py` file.
 
