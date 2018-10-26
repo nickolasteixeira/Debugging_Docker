@@ -43,6 +43,14 @@ Below were my thoughts and steps for solving this problem.
 
 11. Once I manually completed the task, I then had to test it by cloneing the repository and into another directory and running `sudo docker-compose up -d`. To my suprise, there were errors. The goal of this challenge was to find the problem and automate the solution.
 - Instead of manually entering the postgres container and adding the table, I had to do it in the `app.py` file.
-
+12. After adding the table, I starting to find other errors.
+```
+2018-10-26T19:19:47.276707192Z     conn = psycopg2.connect(host='db', database=os.environ['POSTGRES_DB'], user=os.environ['POSTGRES_USER'], password=os.environ['POSTGRES_PASSWORD'])
+2018-10-26T19:19:47.276752434Z   File "/usr/local/lib/python3.7/site-packages/psycopg2/__init__.py", line 130, in connect
+2018-10-26T19:19:47.276960115Z     conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+2018-10-26T19:19:47.277137838Z psycopg2.OperationalError: could not translate host name "db" to address: Temporary failure in name resolution`
+```
+- This error didn't show up previously when runing the application. What was happening was that the flask application was depending on the `db` service, but the flask application was trying to find the `db` service before it was fully set up. I had to create a `wait_db.sh` bash script that waiting for the `db` service to complete before executing the flask `app.py` module. 
+- Error Fixed and application is now running.
 BONUS:
 TBD
