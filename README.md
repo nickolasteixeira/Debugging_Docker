@@ -50,7 +50,10 @@ Below were my thoughts and steps for solving this problem.
 2018-10-26T19:19:47.276960115Z     conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
 2018-10-26T19:19:47.277137838Z psycopg2.OperationalError: could not translate host name "db" to address: Temporary failure in name resolution`
 ```
-- This error didn't show up previously when runing the application. What was happening was that the flask application was depending on the `db` service, but the flask application was trying to find the `db` service before it was fully set up. I had to create a `wait_db.sh` bash script that waiting for the `db` service to complete before executing the flask `app.py` module. 
-- Error Fixed and application is now running.
-BONUS:
+- This error didn't show up previously when runing the application. What was happening was that flask and ingest was depending on the `db` application, but flask and ingest was trying to find the `db` application before it was fully set up. I had to create a `wait_db.sh` bash script that waiting for the `db` application to complete before executing the rest of the dependences. 
+
+13. Lastly, I was running into error when refreshing the page because I had the `app.py` file contain the code to create the `weblogs` table. It instead should have been fixed in the `docker-entrypoint-initdb.d/init-tables.sh` file. I tried to fix the `init-tables.sh`, but found out that I could instead create an `.sql` file that gets executed with the proper sql syntax to initilize the POSTGRES database.
+- Problem solved.
+
+## BONUS:
 TBD
