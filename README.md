@@ -1,11 +1,13 @@
 # DevOps_Puzzle_Insight
 
 ## Commands to run container
-1. If you do not have docker installed
-- `./install_docker.sh`
-
-2. Run the docker container and wait for the messages to stop running before pinging `localhost:8080`
-- `sudo docker-compose up`
+To run the docker container: and wait for the messages to stop running before pinging `localhost:8080`
+- I ran debug the challenge on a Xenial64 Vagrant box and configured the box to forward ports guest:8080, and host:8080
+- Once you've made the changes in the Vagrant box, reload the box `vagrant reload`
+- Clone the repo `git clone https://github.com/nickolasteixeira/DevOps_Puzzle_Insight.git`
+- Install docker if not already installed via the install script `./install_docker.sh` 
+- Then run the docker compse file `sudo docker-compose up`
+- Wait for the messages to stop running before pinging `localhost:8080` on your host browser
 
 Below were my thoughts and steps for solving this problem.
 
@@ -61,6 +63,8 @@ Below were my thoughts and steps for solving this problem.
 
 13. Lastly, I was running into error when refreshing the page because I had the `app.py` file contain the code to create the `weblogs` table. It instead should have been fixed in the `docker-entrypoint-initdb.d/init-tables.sh` file. I tried to fix the `init-tables.sh`, but found out that I could instead create an `.sql` file that gets executed with the proper sql syntax to initilize the POSTGRES database.
 - Problem solved.
+
+14. I realized instead of exporting the environments onto your vagrant box, you could simply add them in the docker-compose file at the root of the directory. That way any machine you try to run the docker command on will work.
 
 ## BONUS:
 TBD
