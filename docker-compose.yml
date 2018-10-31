@@ -10,8 +10,14 @@ services:
       - db_network
   flaskapp:
     build: .
-    env_file:
-      - env_file
+    environment:
+      - POSTGRES_USER=dbuser
+      - POSTGRES_PASSWORD=secure
+      - POSTGRES_DB=webserver
+      - APP_SECRET_KEY=super_duper_secret
+      - RABBITMQ_DEFAULT_USER=rabbitmq
+      - RABBITMQ_DEFAULT_PASS=rabbitmq
+      - RABBITMQ_DEFAULT_VHOST=/
     volumes:
       - .:/opt/services/flaskapp/src
     networks:
@@ -22,8 +28,14 @@ services:
   rabbit:
     image: "rabbitmq:3-management"
     hostname: "rabbit"
-    env_file:
-     - env_file
+    environment:
+      - POSTGRES_USER=dbuser
+      - POSTGRES_PASSWORD=secure
+      - POSTGRES_DB=webserver
+      - APP_SECRET_KEY=super_duper_secret
+      - RABBITMQ_DEFAULT_USER=rabbitmq
+      - RABBITMQ_DEFAULT_PASS=rabbitmq
+      - RABBITMQ_DEFAULT_VHOST=/
     ports:
       - "15672:15672"
       - "5672:5672"
@@ -35,8 +47,14 @@ services:
       - db
   ingestion:
     build: ingestion/.
-    env_file:
-      - env_file
+    environment:
+      - POSTGRES_USER=dbuser
+      - POSTGRES_PASSWORD=secure
+      - POSTGRES_DB=webserver
+      - APP_SECRET_KEY=super_duper_secret
+      - RABBITMQ_DEFAULT_USER=rabbitmq
+      - RABBITMQ_DEFAULT_PASS=rabbitmq
+      - RABBITMQ_DEFAULT_VHOST=/
     networks:
       - ingestion_network
     restart: on-failure
@@ -46,8 +64,14 @@ services:
      - "80:5672"
   processing:
     build: processing/.
-    env_file:
-     - env_file
+    environment:
+      - POSTGRES_USER=dbuser
+      - POSTGRES_PASSWORD=secure
+      - POSTGRES_DB=webserver
+      - APP_SECRET_KEY=super_duper_secret
+      - RABBITMQ_DEFAULT_USER=rabbitmq
+      - RABBITMQ_DEFAULT_PASS=rabbitmq
+      - RABBITMQ_DEFAULT_VHOST=/
     networks:
       - ingestion_network
       - db_network
