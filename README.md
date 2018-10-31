@@ -1,8 +1,8 @@
 # DevOps_Puzzle_Insight
 
 ## Commands to run container
-To run the docker container: and wait for the messages to stop running before pinging `localhost:8080`
-- I ran debug the challenge on a Xenial64 Vagrant box and configured the box to forward ports guest:8080, and host:8080
+To run the docker container:
+- I completed the challenge on a Xenial64 Vagrant box and configured the box to forward ports guest:8080, and host:8080
 - Once you've made the changes in the Vagrant box, reload the box `vagrant reload`
 - Clone the repo `git clone https://github.com/nickolasteixeira/DevOps_Puzzle_Insight.git`
 - Install docker if not already installed via the install script `./install_docker.sh` 
