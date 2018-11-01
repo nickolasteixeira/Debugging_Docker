@@ -67,4 +67,9 @@ Below were my thoughts and steps for solving this problem.
 14. I realized instead of exporting the environments onto your vagrant box, you could simply add them in the docker-compose file at the root of the directory. That way any machine you try to run the docker command on will work.
 
 ## BONUS:
-TBD
+15. This part wasn't too difficult, minus one thing. I realized in the ingestion.py file RabbitMQ was doing a json dump with just the day and the status values, so I added the source value to the dictionary. 
+- Once I added that, I needed to change something in the processing.py file. This was the tricky part. I saw the `values` variable in the callback function had the date and status, but no source, so I added the source. For some reason, I had to add backticks to denote it as a string, and not a variable.
+- Once the processing was set up, I had to add a column in the database.
+- Then on the applicaiton side, I had to wrtie a few more SQL queries to grab objects that only had remote or local and then pass them as objects to the front end.
+- Presto! The front-end now displays total 200 requests, local and remote requests.
+ 
