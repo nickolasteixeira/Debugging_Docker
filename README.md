@@ -45,12 +45,12 @@ Below were my thoughts and steps for solving this problem.
 - Once I realized that, I went to the Dockerfile. I then found the issue. The utils.py module wasn't being copied to the container. I then added the line of code that made sure all the files ending in .py get added to the container. I then added a .dockerignore file to not add .pyc files
 9. I then rebuilt the container: `sudo docker-compose up -d --build` and checked the application again.
 - SUCCESS! I was now recieving the correct output.
-10. I then rejecked all the other container log files and realized one other small error regarding pyscopg2-binaries, so I entered into the container for Postgres and pip installed the dependecy.
+10. I then rechecked all the other container log files and realized one other small error regarding pyscopg2-binaries, so I entered into the container for Postgres and pip installed the dependecy.
 
 
 ## TESTS:
 
-11. Once I manually completed the task, I then had to test it by cloneing the repository and into another directory and running `sudo docker-compose up -d`. To my suprise, there were errors. The goal of this challenge was to find the problem and automate the solution.
+11. Once I manually completed the task, I then had to test it by cloning the repository and into another directory and running `sudo docker-compose up -d`. To my suprise, there were errors. The goal of this challenge was to find the problem and automate the solution.
 - Instead of manually entering the postgres container and adding the table, I had to do it in the `app.py` file.
 12. After adding the table, I starting to find other errors.
 ```
