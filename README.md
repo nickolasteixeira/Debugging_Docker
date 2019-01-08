@@ -1,4 +1,4 @@
-# DevOps_Puzzle_Insight
+# Debugging Docker
 
 ## Commands to run container
 To run the docker container:
